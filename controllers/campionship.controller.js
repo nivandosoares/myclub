@@ -1,4 +1,4 @@
-const Campionship = require("../models/Campionship.model.js");
+const Campionship = require("../models/campionship.model.js");
 
 exports.test = function (req, res) {
   res.send("Looks quite good!!!");

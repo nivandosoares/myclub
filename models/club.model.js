@@ -8,9 +8,9 @@ const ClubSchema = new Schema({
   badge: String,
   coach: String,
   captain: String,
-  competitions: [ChampionshipSchema],
+  competitions: String,
   country: String,
-  players: [PlayerSchema],
+  players: String,
 });
 
 module.exports = mongoose.model("club", ClubSchema);

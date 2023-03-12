@@ -1,4 +1,4 @@
-const Club = require("../models/Club.model.js");
+const Club = require("../models/club.model.js");
 
 exports.test = function (req, res) {
   res.send("Looks quite good!!!");
