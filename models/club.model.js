@@ -6,15 +6,11 @@ const Schema = mongoose.Schema;
 const ClubSchema = new Schema({
   name: String,
   badge: String,
-  club: String,
-  city: String,
-  state: String,
-  players: [String],
-  championships: [String],
-  matches: [String],
-  lastMatch: String,
-  nextMatch: String,
-  competitionRanking: String,
+  coach: String,
+  captain: String,
+  competitions: [ChampionshipSchema],
+  country: String,
+  players: [PlayerSchema],
 });
 
 module.exports = mongoose.model("club", ClubSchema);

@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const ChampionshipSchema = new Schema({
   name: String,
+  badge: String,
   description: Number,
   status: String,
   initialDate: Date,

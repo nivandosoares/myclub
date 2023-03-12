@@ -4,6 +4,8 @@ const PORT = 8000;
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const player = require("./routes/player.routes");
+const club = require("./routes/club.routes");
+const campionship = require("./routes/campionship.routes");
 
 dotenv.config();
 
@@ -21,10 +23,17 @@ mongoose.connection
     console.log("Connection error:", error);
   });
 
+//set EJS as templating engine
+
+app.set("view engine", "ejs");
+app.set("views", __dirname + "/views");
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/players", player);
+app.use("/clubs", club);
+app.use("/campionships", campionship);
 
 app.get("/:universalURL", (req, res) => {
   res.send("404 URL NOT FOUND");
