@@ -1,10 +1,10 @@
 const Campionship = require("../models/campionship.model.js");
 
 exports.test = function (req, res) {
-  res.send("Looks quite good!!!");
-}; //the basic testing querry!!!
+  res.send("This route is working fine as expected");
+}; //the basic testing route to test the server
 
-//the function to create a new Campionship object!!!
+//the function to create a new Campionship object
 exports.create = function (req, res) {
   let Campionship = new Campionship({
     name: req.body.name,
@@ -31,6 +31,45 @@ exports.create = function (req, res) {
     }
     res.send("Campionship created successfully!!!");
   });
+};
+
+//calculating the best player by assists and goals
+
+exports.getStriker = async (req, res) => {
+  const results = await results.find();
+  const players = {};
+
+  results.forEach((result) => {
+    const { homeTeam, awayTeam, score } = result;
+    const [homeGoals, awayGoals] = score.split("-").map(Number);
+
+    homeTeam.players.forEach((player) => {
+      if (!players[player]) {
+        players[player] = { goals: 0, assists: 0 };
+      }
+
+      players[player].goals += homeGoals;
+      players[player].assists += 1;
+    });
+
+    awayTeam.players.forEach((player) => {
+      if (!players[player]) {
+        players[player] = { goals: 0, assists: 0 };
+      }
+
+      players[player].goals += awayGoals;
+      players[player].assists += 1;
+    });
+  });
+
+  const bestPlayer = Object.keys(players).reduce((a, b) => {
+    return players[a].goals + players[a].assists >
+      players[b].goals + players[b].assists
+      ? a
+      : b;
+  });
+
+  res.json({ bestPlayer });
 };
 
 //the function to read a Campionship object in json

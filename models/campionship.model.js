@@ -4,19 +4,25 @@ const Schema = mongoose.Schema;
 const ChampionshipSchema = new Schema({
   name: String,
   badge: String,
-  description: Number,
-  status: String,
+  description: String,
+  status: { enum: ["upcoming", "ongoing", "finished"] },
   initialDate: Date,
   finalDate: Date,
-  clubs: [String],
-  matches: [String],
-  atualChampion: String,
+  clubs: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "club",
+      reqired: true,
+    },
+  ],
+  matches: [{ type: mongoose.Schema.Types.ObjectId, ref: "match" }],
+  atualChampion: { type: mongoose.Schema.Types.ObjectId, ref: "club" },
   goals: Number,
   assists: Number,
   yellowCards: Number,
   redCards: Number,
-  striker: String,
-  assistsLeader: String,
+  striker: { type: mongoose.Schema.Types.ObjectId, ref: "player" },
+  assistsLeader: { type: mongoose.Schema.Types.ObjectId, ref: "player" },
   city: String,
 });
 

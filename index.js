@@ -3,10 +3,11 @@ const app = express();
 const PORT = 8000;
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
+
 const player = require("./routes/player.routes");
 const club = require("./routes/club.routes");
 const campionship = require("./routes/campionship.routes");
-
+const match = require("./routes/match.routes");
 dotenv.config();
 
 //import mongoose
@@ -34,6 +35,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/players", player);
 app.use("/clubs", club);
 app.use("/campionships", campionship);
+app.use("/matches", match);
 
 app.get("/:universalURL", (req, res) => {
   res.send("404 URL NOT FOUND");
