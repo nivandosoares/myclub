@@ -12,18 +12,6 @@ exports.search = function (req, res) {
   //searches match by specific position
 };
 
-exports.sort = function (req, res) {
-  match
-    .find({})
-    .sort({ rating: -1 })
-    .find({ position: req.params.pos }, function (error, matches) {
-      //decreasing order of match ratings!!!
-      if (error) return error;
-      res.json(matches);
-    });
-  //sorts match according to their ratings for a particular position!!!
-};
-
 //the function to create a new match object!!!
 exports.create = function (req, res) {
   let match = new match({
