@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const PORT = 8000;
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 
@@ -37,11 +36,7 @@ app.use("/clubs", club);
 app.use("/campionships", campionship);
 app.use("/matches", match);
 
-app.get("/:universalURL", (req, res) => {
-  res.send("404 URL NOT FOUND");
+app.get("*", (req, res) => {
+  res.status(400).send({ error: "Incorrect Endpoint" });
 });
-
-//listen on port 3000
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+module.exports = app;
