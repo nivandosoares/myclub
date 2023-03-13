@@ -4,9 +4,19 @@ exports.test = function (req, res) {
   res.send("Looks quite good!!!");
 }; //the basic testing querry!!!
 
-//the function to create a new Club object!!!
-exports.create = function (req, res) {
-  let Club = new Club({
+//list all the clubs
+exports.index = async function (req, res) {
+  try {
+    const clubs = await Club.find();
+    res.json(clubs);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+//the function to create a new Club object
+exports.create = async function (req, res) {
+  const Club = new Club({
     name: req.body.name,
     badge: req.body.badge,
     coach: req.body.coach,
@@ -16,40 +26,64 @@ exports.create = function (req, res) {
     players: req.body.players,
   });
 
-  Club.save(function (error) {
+
+  Club.save = async function (error) {
     if (error) {
       return error;
     }
-    res.send("Club created successfully!!!");
-  });
+    res.send("Club is created successfully!!!"); //the collection is the output
+  };
 };
-
 //the function to read a Club object in json
-exports.read = function (req, res) {
-  //var idd="5c306ea8617f7d12101711c9";
-  Club.findById(req.params.id, function (error, product) {
-    if (error) {
-      return error;
+exports.read = async function (req, res) {
+  try {
+    const club = await Club.findById(req.params.id);
+    res.json(club);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+//the function to update a Club object
+exports.update = async function (req, res) {
+  try {
+    const club = await Club.findById(req.params.id);
+    if (req.body.name != null) {
+      club.name = req.body.name;
     }
-
-    res.send(product);
-  });
-};
-
-//the function to update a Club object!!!
-exports.update = function (req, res) {
-  Club.findByIdAndUpdate(req.params.id, { $set: req.body }, function (error) {
-    if (error) {
-      return error;
+    if (req.body.badge != null) {
+      club.badge = req.body.badge;
     }
-    res.send("Club is updated successfully!!!");
-  });
+    if (req.body.coach != null) {
+      club.coach = req.body.coach;
+    }
+    if (req.body.captain != null) {
+      club.captain = req.body.captain;
+    }
+    if (req.body.competitions != null) {
+      club.competitions = req.body.competitions;
+    }
+    if (req.body.country != null) {
+      club.country = req.body.country;
+    }
+    if (req.body.players != null) {
+      club.players = req.body.players;
+    }
+    const updatedClub = await club.save();
+    res.json(updatedClub);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
-//the function to delete a Club object!!!
-exports.delete = function (req, res) {
-  Club.findByIdAndRemove(req.params.id, function (error) {
-    // Club is removed with reference to id
-    res.send("Club removed successfully!!!");
-  });
+//the function to delete a Club object
+exports.delete = async function (req, res) {
+  try {
+    const club = await Club.findById(req.params.id);
+    await club.remove();
+    res.json({ message: "Club deleted successfully!" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
+

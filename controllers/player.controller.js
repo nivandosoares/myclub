@@ -1,73 +1,99 @@
 const Player = require("../models/player.model.js");
 
-exports.test = function(req,res){
-  res.send("Looks quite good!!!");
-} //the basic testing querry!!!
+exports.test = function (req, res) {
+  res.send("This route is running as expected");
+}; //the basic testing querry
 
-exports.search = function(req,res){
-  Player.find({position : req.params.club},function(error,players){
-    if(error)
-    return(error);
-    res.json(players); //the collection is the output
-  });
-  //searches player by specific position
-};
-
-exports.sort = function(req,res){
-  Player.find({}).sort({rating:-1}).find({position:req.params.pos},function(error,players){ //decreasing order of player ratings!!!
-    if(error)
-    return (error);
+//export index with all the players
+exports.index = async function (req, res) {
+  try {
+    const players = await Player.find();
     res.json(players);
-  });
-  //sorts player according to their ratings for a particular position!!!
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
+//get player by specific club
+exports.search = async function (req, res) {
+  try {
+    const players = await Player.find({ club: req.params.club });
+    res.json(players);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// get player by specific position
+
+exports.sort = async function (req, res) {
+  try {
+    const players = await Player.find({ position: req.params.pos }).sort({
+      rating: -1,
+    });
+    res.json(players);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 //the function to create a new Player object!!!
-exports.create = function(req,res){
-  let player = new Player({
-    name : req.body.name,
-    age : req.body.age,
-    club : req.body.club,
-    position : req.body.position
+exports.create = async function (req, res) {
+  const player = new Player({
+    name: req.body.name,
+    club: req.body.club,
+    position: req.body.position,
+    rating: req.body.rating,
   });
 
-  player.save (function(error){
-    if(error){
-      return(error);
+  player.save = async function (error) {
+    if (error) {
+      return error;
     }
-    res.send("Player created successfully!!!");
-  });
+    res.send("Player is created successfully!!!"); //the collection is the output
+  };
 
+  //the function to read a Player object in json
+  exports.read = async function (req, res) {
+    try {
+      const player = await Player.findById(req.params.id);
+      res.json(player);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };
 };
 
-//the function to read a Player object in json
-exports.read = function(req,res){
-  //var idd="5c306ea8617f7d12101711c9";
-  Player.findById(req.params.id,function(error,product){
-    if(error){
-      return(error);
+//the function to update a Player object!!!
+exports.update = async function (req, res) {
+  try {
+    const player = await Player.findById(req.params.id);
+    if (req.body.name != null) {
+      player.name = req.body.name;
     }
-
-    res.send(product);
-  });
-
+    if (req.body.club != null) {
+      player.club = req.body.club;
+    }
+    if (req.body.position != null) {
+      player.position = req.body.position;
+    }
+    if (req.body.rating != null) {
+      player.rating = req.body.rating;
+    }
+    const updatedPlayer = await player.save();
+    res.json(updatedPlayer);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
-
-//the function to update a Player object!!! 
-exports.update = function(req,res){
-  Player.findByIdAndUpdate(req.params.id,{$set:req.body},function(error){
-    if(error){
-      return(error);
-    }
-    res.send("Player is updated successfully!!!");
-  });
-}
-
 
 //the function to delete a Player object!!!
-exports.delete = function(req,res){
-  Player.findByIdAndRemove(req.params.id,function(error){ // player is removed with reference to id
-    res.send("Player removed successfully!!!");
-  });
+exports.delete = async function (req, res) {
+  try {
+    const player = await Player.findById(req.params.id);
+    await player.remove();
+    res.json({ message: "Deleted Player" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };

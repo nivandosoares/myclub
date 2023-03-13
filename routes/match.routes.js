@@ -3,6 +3,8 @@ const router = express.Router();
 
 const match_controller = require("../controllers/match.controller.js");
 
+router.get("/", match_controller.index); //url to get all the matches
+
 router.get("/test", match_controller.test); //url to test the server
 
 router.post("/create", match_controller.create); //url to create a match object

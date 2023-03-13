@@ -4,9 +4,15 @@ exports.test = function (req, res) {
   res.send("This route is working fine as expected");
 }; //the basic testing route to test the server
 
+//list all the Campionships
+exports.index = async (req, res) => {
+  const Campionships = await Campionship.find();
+  res.json(Campionships);
+};
+
 //the function to create a new Campionship object
-exports.create = function (req, res) {
-  let Campionship = new Campionship({
+exports.create = async (req, res) => {
+  const Campionship = new Campionship({
     name: req.body.name,
     badge: req.body.badge,
     description: req.body.description,
@@ -73,35 +79,80 @@ exports.getStriker = async (req, res) => {
 };
 
 //the function to read a Campionship object in json
-exports.read = function (req, res) {
-  //var idd="5c306ea8617f7d12101711c9";
-  Campionship.findById(req.params.id, function (error, product) {
-    if (error) {
-      return error;
+exports.read = async function (req, res) {
+  try {
+    const Campionship = await Campionship.findById(req.params.id);
+    res.json(Campionship);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+//the function to update a Campionship object
+exports.update = async function (req, res) {
+  try {
+    const Campionship = await Campionship.findById(req.params.id);
+    if (req.body.name != null) {
+      Campionship.name = req.body.name;
     }
-
-    res.send(product);
-  });
+    if (req.body.badge != null) {
+      Campionship.badge = req.body.badge;
+    }
+    if (req.body.description != null) {
+      Campionship.description = req.body.description;
+    }
+    if (req.body.status != null) {
+      Campionship.status = req.body.status;
+    }
+    if (req.body.initialDate != null) {
+      Campionship.initialDate = req.body.initialDate;
+    }
+    if (req.body.finalDate != null) {
+      Campionship.finalDate = req.body.finalDate;
+    }
+    if (req.body.clubs != null) {
+      Campionship.clubs = req.body.clubs;
+    }
+    if (req.body.matches != null) {
+      Campionship.matches = req.body.matches;
+    }
+    if (req.body.atualChampion != null) {
+      Campionship.atualChampion = req.body.atualChampion;
+    }
+    if (req.body.goals != null) {
+      Campionship.goals = req.body.goals;
+    }
+    if (req.body.assists != null) {
+      Campionship.assists = req.body.assists;
+    }
+    if (req.body.yellowCards != null) {
+      Campionship.yellowCards = req.body.yellowCards;
+    }
+    if (req.body.redCards != null) {
+      Campionship.redCards = req.body.redCards;
+    }
+    if (req.body.striker != null) {
+      Campionship.striker = req.body.striker;
+    }
+    if (req.body.assistsLeader != null) {
+      Campionship.assistsLeader = req.body.assistsLeader;
+    }
+    if (req.body.city != null) {
+      Campionship.city = req.body.city;
+    }
+    const updatedCampionship = await Campionship.save();
+    res.json(updatedCampionship);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
-//the function to update a Campionship object!!!
-exports.update = function (req, res) {
-  Campionship.findByIdAndUpdate(
-    req.params.id,
-    { $set: req.body },
-    function (error) {
-      if (error) {
-        return error;
-      }
-      res.send("Campionship is updated successfully!!!");
-    }
-  );
-};
-
-//the function to delete a Campionship object!!!
-exports.delete = function (req, res) {
-  Campionship.findByIdAndRemove(req.params.id, function (error) {
-    // Campionship is removed with reference to id
-    res.send("Campionship removed successfully!!!");
-  });
+//the function to delete a Campionship object
+exports.delete = async function (req, res) {
+  try {
+    const Campionship = await Campionship.findById(req.params.id);
+    await Campionship.remove();
+    res.json({ message: "Campionship deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };

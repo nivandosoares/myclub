@@ -3,6 +3,8 @@ const router = express.Router();
 
 const club_controller = require("../controllers/club.controller.js");
 
+router.get("/", club_controller.index); //url to get all the clubs
+
 router.get("/test", club_controller.test); //url to test the server
 
 router.post("/create", club_controller.create); //url to create a club object

@@ -3,9 +3,11 @@ const router = express.Router();
 
 const campionship_controller = require("../controllers/campionship.controller.js");
 
-router.get("/best-player", campionship_controller.getStriker);
+router.get("/", campionship_controller.index); //url to get all the campionships
 
-router.get("/test", campionship_controller.test); //url to test the server!!!
+router.get("/best-player", campionship_controller.getStriker); //url to get the best striker
+
+router.get("/test", campionship_controller.test); //url to test the server
 
 router.post("/create", campionship_controller.create); //url to create a campionship object
 
