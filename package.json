@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon app.js",
-    "test": "jest --forceExit --verbose --coverage --detectOpenHandles  --watchAll --maxWorkers=1"
+    "test": "jest --forceExit  --detectOpenHandles  --watchAll --maxWorkers=1"
   },
   "author": "Nivando Soares",
   "license": "ISC",

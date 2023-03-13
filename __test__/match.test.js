@@ -1,35 +1,35 @@
 //supertests for the match route
-describe("GET /match", () => {
+describe("GET /matches", () => {
   it("should return 200 OK", () => {
     return request(app).get("/match").expect(200);
   });
 });
 
-describe("GET /match/test", () => {
+describe("GET /matches/test", () => {
   it("should return 200 OK", () => {
     return request(app).get("/match/test").expect(200);
   });
 });
 
-describe("GET /match/:id", () => {
+describe("GET /matches/:id", () => {
   it("should return 200 OK", () => {
     return request(app).get("/match/1").expect(200);
   });
 });
 
-describe("POST /match/create", () => {
+describe("POST /matches/create", () => {
   it("should return 200 OK", () => {
     return request(app).post("/match/create").expect(200);
   });
 });
 
-describe("PUT /match/:id/update", () => {
+describe("PUT /matches/:id/update", () => {
   it("should return 200 OK", () => {
     return request(app).put("/match/1/update").expect(200);
   });
 });
 
-describe("DELETE /match/:id/delete", () => {
+describe("DELETE /matches/:id/delete", () => {
   it("should return 200 OK", () => {
     return request(app).delete("/match/1/delete").expect(200);
   });
