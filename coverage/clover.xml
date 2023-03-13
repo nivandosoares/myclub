@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1678680164028" clover="3.2.0">
-  <project timestamp="1678680164028" name="All files">
-    <metrics statements="201" coveredstatements="106" conditionals="36" coveredconditionals="0" methods="50" coveredmethods="1" elements="287" coveredelements="107" complexity="0" loc="201" ncloc="201" packages="4" files="13" classes="13"/>
+<coverage generated="1678711387684" clover="3.2.0">
+  <project timestamp="1678711387684" name="All files">
+    <metrics statements="201" coveredstatements="105" conditionals="36" coveredconditionals="0" methods="50" coveredmethods="0" elements="287" coveredelements="105" complexity="0" loc="201" ncloc="201" packages="4" files="13" classes="13"/>
     <package name="myclub">
-      <metrics statements="26" coveredstatements="24" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
+      <metrics statements="26" coveredstatements="23" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
       <file name="app.js" path="/home/nivando/myclub/app.js">
-        <metrics statements="26" coveredstatements="24" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
+        <metrics statements="26" coveredstatements="23" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -29,9 +29,9 @@
         <line num="35" count="1" type="stmt"/>
         <line num="36" count="1" type="stmt"/>
         <line num="37" count="1" type="stmt"/>
-        <line num="39" count="1" type="stmt"/>
-        <line num="40" count="1" type="stmt"/>
-        <line num="42" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
       </file>
     </package>
     <package name="myclub.controllers">
