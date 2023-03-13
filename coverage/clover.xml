@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1678711387684" clover="3.2.0">
-  <project timestamp="1678711387684" name="All files">
-    <metrics statements="201" coveredstatements="105" conditionals="36" coveredconditionals="0" methods="50" coveredmethods="0" elements="287" coveredelements="105" complexity="0" loc="201" ncloc="201" packages="4" files="13" classes="13"/>
+<coverage generated="1678712625094" clover="3.2.0">
+  <project timestamp="1678712625104" name="All files">
+    <metrics statements="201" coveredstatements="106" conditionals="36" coveredconditionals="0" methods="50" coveredmethods="1" elements="287" coveredelements="107" complexity="0" loc="201" ncloc="201" packages="4" files="13" classes="13"/>
     <package name="myclub">
       <metrics statements="26" coveredstatements="23" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
       <file name="app.js" path="/home/nivando/myclub/app.js">
@@ -29,13 +29,13 @@
         <line num="35" count="1" type="stmt"/>
         <line num="36" count="1" type="stmt"/>
         <line num="37" count="1" type="stmt"/>
-        <line num="38" count="1" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="41" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
       </file>
     </package>
     <package name="myclub.controllers">
-      <metrics statements="121" coveredstatements="28" conditionals="36" coveredconditionals="0" methods="47" coveredmethods="0"/>
+      <metrics statements="121" coveredstatements="29" conditionals="36" coveredconditionals="0" methods="47" coveredmethods="1"/>
       <file name="campionship.controller.js" path="/home/nivando/myclub/controllers/campionship.controller.js">
         <metrics statements="41" coveredstatements="7" conditionals="12" coveredconditionals="0" methods="14" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
@@ -135,10 +135,10 @@
         <line num="59" count="0" type="stmt"/>
       </file>
       <file name="player.controller.js" path="/home/nivando/myclub/controllers/player.controller.js">
-        <metrics statements="32" coveredstatements="8" conditionals="10" coveredconditionals="0" methods="13" coveredmethods="0"/>
+        <metrics statements="32" coveredstatements="9" conditionals="10" coveredconditionals="0" methods="13" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
         <line num="9" count="0" type="cond" truecount="0" falsecount="2"/>

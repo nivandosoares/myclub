@@ -35,6 +35,9 @@ app.use("/players", player);
 app.use("/clubs", club);
 app.use("/campionships", campionship);
 app.use("/matches", match);
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on port ${process.env.PORT}`);
+
+app.get("/", (req, res) => {
+  res.status(200).send("Hello World!");
 });
+
+module.exports = app;

@@ -6,6 +6,6 @@ const Player = require("../models/player.model.js");
 
 describe("GET /players/test", () => {
   it("should return 200 OK", () => {
-    return request(app).get("/players").expect(200);
+    return request(app).get("/players/test").expect(200);
   });
 });
