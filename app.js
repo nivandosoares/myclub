@@ -35,8 +35,6 @@ app.use("/players", player);
 app.use("/clubs", club);
 app.use("/campionships", campionship);
 app.use("/matches", match);
-
-app.get("*", (req, res) => {
-  res.status(400).send({ error: "Incorrect Endpoint" });
+app.listen(process.env.PORT, () => {
+  console.log(`Server running on port ${process.env.PORT}`);
 });
-module.exports = app;
