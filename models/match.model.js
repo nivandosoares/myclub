@@ -14,6 +14,7 @@ const matchSchema = new mongoose.Schema({
   date: { type: Date, required: true },
   competition: { type: String, required: true },
   result: { type: String, enum: ["home", "away", "draw", "upcoming"] },
+  score: { type: String },
 });
 
 module.exports = mongoose.model("match", matchSchema);

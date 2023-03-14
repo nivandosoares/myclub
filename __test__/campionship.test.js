@@ -1,3 +1,7 @@
+const app = require("../app.js");
+const request = require("supertest");
+const Championship = require("../models/championship.model.js");
+
 //supertests for the championship route
 describe("GET /championship", () => {
   it("should return 200 OK", () => {

@@ -1,3 +1,6 @@
+requests = require("supertest");
+app = require("../app.js");
+Match = require("../models/match.model.js");
 //supertests for the match route
 describe("GET /matches", () => {
   it("should return 200 OK", () => {

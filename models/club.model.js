@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 //creating the club model
 
 const ClubSchema = new Schema({
+  id: Number,
   name: String,
   badge: String,
   coach: String,
