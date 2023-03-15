@@ -48,14 +48,15 @@ exports.create = async (req, res) => {
 exports.update = async (req, res) => {
   try {
 
-    if (!club) {
-      res.status(404).send("Club not found");
-    }
     const club = await Club.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     })
       .populate("players")
       .populate("history.championship");
+      if (!club) {
+        res.status(404).send("Club not found");
+        return;
+      }
     res.json(club);
   } catch (err) {
     
