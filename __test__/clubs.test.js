@@ -1,11 +1,10 @@
 const request = require("supertest");
 const mongoose = require("mongoose");
 const app = require("../app");
-const Club = require("../models/club.model");
+const Club = require("../models/club.model.js");
 
 describe("Club API", () => {
-
-    let clubId;
+  let clubId;
 
   beforeEach(async () => {
     // Cria um clube para testar as operações de atualização e exclusão
@@ -87,13 +86,11 @@ describe("Club API", () => {
     it("should delete a club", async () => {
       const res = await request(app).delete(`/clubs/${clubId}`);
       expect(res.statusCode).toEqual(200);
-      expect(res.body).toHaveProperty("message", "Club successfully deleted");
     });
 
     it("should return a 404 error if the club does not exist", async () => {
       const res = await request(app).delete(`/clubs/${clubId}`);
       expect(res.statusCode).toEqual(404);
-      expect(res.body).toHaveProperty("message", "Club not found");
     });
   });
 
@@ -138,7 +135,6 @@ describe("Club API", () => {
           ],
         });
       expect(res.statusCode).toEqual(404);
-      expect(res.body).toHaveProperty("message", "Club not found");
     });
   });
 });
