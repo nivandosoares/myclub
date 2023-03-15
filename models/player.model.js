@@ -3,26 +3,25 @@ const Schema = mongoose.Schema;
 
 //the schema used for the Player collection!!!
 const PlaySchema = new Schema({
+  _id: mongoose.Schema.Types.ObjectId,
   name: String,
   age: Number,
+  position: String,
   club: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "club",
+    ref: "Club",
   },
-  position: String,
-  rating: Number,
-  goals: Number,
-  assists: Number,
-  yellowCards: Number,
-  redCards: Number,
-  historyClubs: [{ type: mongoose.Schema.Types.ObjectId, ref: "club" }],
-  historyChampionships: [
-    { type: mongoose.Schema.Types.ObjectId, ref: "campionship" },
+  history: [
+    {
+      campionship: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Campionship",
+      },
+      matchesPlayed: Number,
+      goals: Number,
+      assists: Number,
+    },
   ],
-  historyMatches: [{ type: mongoose.Schema.Types.ObjectId, ref: "match" }],
-  lastMatch: { type: mongoose.Schema.Types.ObjectId, ref: "match" },
-  nextMatch: { type: mongoose.Schema.Types.ObjectId, ref: "match" },
-  lastGoal: { type: mongoose.Schema.Types.ObjectId, ref: "match" },
 });
 
 module.exports = mongoose.model("player", PlaySchema);
