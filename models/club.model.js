@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 //creating the club model
 
 const ClubSchema = new Schema({
-  _id: mongoose.Schema.Types.ObjectId,
   name: String,
   city: String,
   players: [
@@ -15,10 +14,12 @@ const ClubSchema = new Schema({
   ],
   history: [
     {
-      campionship: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Campionship",
-      },
+      championship: [
+        {
+          type: mongoose.Schema.Types.Mixed,
+          ref: "championship",
+        },
+      ],
       position: String,
       points: Number,
       victories: Number,
@@ -26,6 +27,7 @@ const ClubSchema = new Schema({
       draws: Number,
       goalsPro: Number,
       goalsTaken: Number,
+      bestParticipation: String,
     },
   ],
 });

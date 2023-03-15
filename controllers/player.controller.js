@@ -1,40 +1,43 @@
-const player = require("../models/player.model.js");
+const Player = require("../models/player.model.js");
 
-// Obtém todos os playeres
+// Obtém todos os jogadores
 exports.list = async (req, res) => {
   try {
-    const players = await player.find({});
+    const players = await Player.find({});
     res.json(players);
   } catch (err) {
     res.status(500).send(err);
   }
 };
 
-// Obtém um player específico por ID
+// Obtém um jogador específico por ID
 exports.searchById = async (req, res) => {
   try {
-    const player = await player.findById(req.params.id);
+    const player = await Player.findById(req.params.id);
+    if (!player) {
+      res.status(404).send("Player not found");
+      return;
+    }
     res.json(player);
   } catch (err) {
     res.status(500).send(err);
   }
 };
-
-// Adiciona um novo player
+// Adiciona um novo jogador
 exports.create = async (req, res) => {
   try {
-    const novoplayer = new player(req.body);
-    const player = await novoplayer.save();
+    const newPlayer = new Player(req.body);
+    const player = await newPlayer.save();
     res.json(player);
   } catch (err) {
     res.status(500).send(err);
   }
 };
 
-// Atualiza um player existente por ID
+// Atualiza um jogador existente por ID
 exports.update = async (req, res) => {
   try {
-    const player = await player.findByIdAndUpdate(req.params.id, req.body, {
+    const player = await Player.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
     res.json(player);
@@ -43,10 +46,10 @@ exports.update = async (req, res) => {
   }
 };
 
-// Exclui um player existente por ID
+// Exclui um jogador existente por ID
 exports.delete = async (req, res) => {
   try {
-    const player = await player.findByIdAndRemove(req.params.id);
+    const player = await Player.findByIdAndRemove(req.params.id);
     res.json(player);
   } catch (err) {
     res.status(500).send(err);

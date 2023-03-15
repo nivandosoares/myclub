@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 
 const player = require("./routes/player.routes");
 const club = require("./routes/club.routes");
-const campionship = require("./routes/campionship.routes");
+const championship = require("./routes/championship.routes");
 const match = require("./routes/match.routes");
 dotenv.config();
 
@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/players", player);
 app.use("/clubs", club);
-app.use("/campionships", campionship);
+app.use("/championships", championship);
 app.use("/matches", match);
 
 app.get("/", (req, res) => {

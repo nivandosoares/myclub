@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const matchSchema = new mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
   type: String, // "friendly" ou "oficial match"
   campeonato: {
     type: mongoose.Schema.Types.ObjectId,
