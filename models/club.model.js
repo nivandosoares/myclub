@@ -8,7 +8,7 @@ const ClubSchema = new Schema({
   city: String,
   players: [
     {
-      type: mongoose.Schema.Types.Mixed,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "player",
     },
   ],

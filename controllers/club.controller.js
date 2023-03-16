@@ -3,9 +3,7 @@ const Club = require("../models/club.model.js");
 // Obtém todos os clubes
 exports.list = async (req, res) => {
   try {
-    const clubs = await Club.find({})
-      .populate("players")
-      .populate("history.championship");
+    const clubs = await Club.find({});
     res.json(clubs);
   } catch (err) {
     res.status(500).send(err);
@@ -15,9 +13,7 @@ exports.list = async (req, res) => {
 // Obtém um clube específico por ID
 exports.searchById = async (req, res) => {
   try {
-    const club = await Club.findById(req.params.id)
-      .populate("players")
-      .populate("history.championship");
+    const club = await Club.findById(req.params.id);
     if (!club) {
       res.status(404).send("Club not found");
       return;
