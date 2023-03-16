@@ -45,13 +45,7 @@ exports.update = async (req, res) => {
   try {
     const club = await Club.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
-    })
-      .populate("players")
-      .populate("history.championship");
-    if (!club) {
-      res.status(404).send("Club not found");
-      return;
-    }
+    });
     res.json(club);
   } catch (err) {
     res.status(500).send(err);
@@ -61,9 +55,11 @@ exports.update = async (req, res) => {
 // Exclui um clube existente por ID
 exports.delete = async (req, res) => {
   try {
-    const club = await Club.findByIdAndRemove(req.params.id)
-      .populate("players")
-      .populate("history.championship");
+    const club = await Club.findByIdAndRemove(req.params.id);
+    if (!club) {
+      res.status(404).send("Club not found");
+      return;
+    }
     res.json(club);
   } catch (err) {
     res.status(500).send(err);

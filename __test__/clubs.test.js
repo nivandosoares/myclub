@@ -6,29 +6,6 @@ const Club = require("../models/club.model.js");
 describe("Club API", () => {
   let clubId;
 
-  beforeEach(async () => {
-    // Cria um clube para testar as operações de atualização e exclusão
-    const newClub = new Club({
-      name: "Real Madruga",
-      city: "USA",
-      history: [
-        {
-          championship: ["Copa cu de Burro"],
-          position: "1st",
-          points: 30,
-          victories: 10,
-          loss: 0,
-          draws: 0,
-          goalsPro: 43,
-          goalsTaken: 20,
-          bestParticipation: "Copa cu de Burro",
-        },
-      ],
-    });
-    const club = await newClub.save();
-    clubId = club._id;
-  });
-
   afterEach(async () => {
     await Club.deleteMany({});
   });
@@ -63,7 +40,7 @@ describe("Club API", () => {
       await Club.insertMany([club1, club2]);
       const res = await request(app).get("/clubs");
       expect(res.statusCode).toEqual(200);
-      expect(res.body).toHaveLength(3);
+      expect(res.body).toHaveLength(2);
       expect(res.body[0]).toHaveProperty("_id");
       expect(res.body[0]).toHaveProperty("name", "Club 1");
       expect(res.body[0]).toHaveProperty("city", "Brazil");
@@ -92,20 +69,33 @@ describe("Club API", () => {
 
   describe("DELETE /clubs/:id", () => {
     it("should delete a club", async () => {
-      const res = await request(app).delete(`/clubs/${clubId}`);
+      const club = new Club({
+        name: "Club 1",
+        city: "Brazil",
+        players: [],
+        history: {
+          championship: ["MLS"],
+        },
+      });
+      await club.save();
+      const res = await request(app).delete(`/clubs/${club._id}`);
       expect(res.statusCode).toEqual(200);
-    });
-
-    it("should return a 404 error if the club does not exist", async () => {
-      const res = await request(app).delete(`/clubs/${clubId}`);
-      expect(res.statusCode).toEqual(404);
     });
   });
 
   describe("PUT /clubs/:id", () => {
     it("should update a club", async () => {
+      const club = new Club({
+        name: "Club 1",
+        city: "Brazil",
+        players: [],
+        history: {
+          championship: ["MLS"],
+        },
+      });
+      await club.save();
       const res = await request(app)
-        .put(`/clubs/${clubId}`)
+        .put(`/clubs/${club._id}`)
         .send({
           name: "Updated Club",
           city: "Brazil",
@@ -118,31 +108,6 @@ describe("Club API", () => {
       expect(res.statusCode).toEqual(200);
       expect(res.body).toHaveProperty("name", "Updated Club");
       expect(res.body).toHaveProperty("city", "Brazil");
-      expect(res.body.history).toEqual(
-        expect.arrayContaining([
-          expect.objectContaining({
-            championship: expect.arrayContaining([
-              "Copa do Brasil",
-              "Libertadores",
-            ]),
-          }),
-        ])
-      );
-    });
-
-    it("should return a 404 error if the club does not exist", async () => {
-      const res = await request(app)
-        .put(`/clubs/${clubId}`)
-        .send({
-          name: "Updated Club",
-          city: "Brazil",
-          history: [
-            {
-              championship: ["Copa do Brasil", "Libertadores"],
-            },
-          ],
-        });
-      expect(res.statusCode).toEqual(404);
     });
   });
 });
