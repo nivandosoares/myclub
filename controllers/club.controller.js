@@ -47,19 +47,17 @@ exports.create = async (req, res) => {
 // Atualiza um clube existente por ID
 exports.update = async (req, res) => {
   try {
-
     const club = await Club.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     })
       .populate("players")
       .populate("history.championship");
-      if (!club) {
-        res.status(404).send("Club not found");
-        return;
-      }
+    if (!club) {
+      res.status(404).send("Club not found");
+      return;
+    }
     res.json(club);
   } catch (err) {
-    
     res.status(500).send(err);
   }
 };

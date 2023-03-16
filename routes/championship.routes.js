@@ -9,7 +9,7 @@ router.get("/:id", championhsip_controller.searchById); //url to test the server
 
 router.post("/create", championhsip_controller.create); //url to create a championhsip object
 
-//router.get("/:id",championhsip_controller.read);//url to read a championhsip object
+router.get("/:id/striker", championhsip_controller.strikers); //url to get the strikers of a championship")
 
 router.put("/:id/update", championhsip_controller.update); //url to update a championhsip object
 

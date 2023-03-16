@@ -1,40 +1,36 @@
-const match = require("../models/match.model.js");
+const Match = require("../models/match.model.js");
 
-// Obtém todas as matchs
 exports.list = async (req, res) => {
   try {
-    const matchs = await match.find({});
-    res.json(matchs);
+    const matches = await Match.find({});
+    res.json(matches);
   } catch (err) {
     res.status(500).send(err);
   }
 };
 
-// Obtém uma match específica por ID
 exports.searchById = async (req, res) => {
   try {
-    const match = await match.findById(req.params.id);
+    const match = await Match.findById(req.params.id);
     res.json(match);
   } catch (err) {
     res.status(500).send(err);
   }
 };
 
-// Adiciona uma nova match
 exports.create = async (req, res) => {
   try {
-    const novamatch = new match(req.body);
-    const match = await novamatch.save();
+    const newMatch = new Match(req.body);
+    const match = await newMatch.save();
     res.json(match);
   } catch (err) {
     res.status(500).send(err);
   }
 };
 
-// Atualiza uma match existente por ID
 exports.update = async (req, res) => {
   try {
-    const match = await match.findByIdAndUpdate(req.params.id, req.body, {
+    const match = await Match.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
     res.json(match);
@@ -43,10 +39,9 @@ exports.update = async (req, res) => {
   }
 };
 
-// Exclui uma match existente por ID
 exports.delete = async (req, res) => {
   try {
-    const match = await match.findByIdAndRemove(req.params.id);
+    const match = await Match.findByIdAndRemove(req.params.id);
     res.json(match);
   } catch (err) {
     res.status(500).send(err);

@@ -4,23 +4,6 @@ const app = require("../app");
 const Club = require("../models/club.model.js");
 
 describe("Club API", () => {
-  let clubId;
-
-  beforeEach(async () => {
-    // Cria um clube para testar as operações de atualização e exclusão
-    const newClub = new Club({
-      name: "Real Madruga",
-      city: "USA",
-      history: [
-        {
-          championship: ["Copa cu de Burro"],
-        },
-      ],
-    });
-    const club = await newClub.save();
-    clubId = club._id;
-  });
-
   afterEach(async () => {
     await Club.deleteMany({});
   });
@@ -84,12 +67,12 @@ describe("Club API", () => {
 
   describe("DELETE /clubs/:id", () => {
     it("should delete a club", async () => {
-      const res = await request(app).delete(`/clubs/${clubId}`);
+      const res = await request(app).delete(`/clubs/${club._id}`);
       expect(res.statusCode).toEqual(200);
     });
 
     it("should return a 404 error if the club does not exist", async () => {
-      const res = await request(app).delete(`/clubs/${clubId}`);
+      const res = await request(app).delete(`/clubs/${club._id}`);
       expect(res.statusCode).toEqual(404);
     });
   });
@@ -97,7 +80,7 @@ describe("Club API", () => {
   describe("PUT /clubs/:id", () => {
     it("should update a club", async () => {
       const res = await request(app)
-        .put(`/clubs/${clubId}`)
+        .put(`/clubs/${club._id}`)
         .send({
           name: "Updated Club",
           city: "Brazil",
@@ -124,7 +107,7 @@ describe("Club API", () => {
 
     it("should return a 404 error if the club does not exist", async () => {
       const res = await request(app)
-        .put(`/clubs/${clubId}`)
+        .put(`/clubs/${club._id}`)
         .send({
           name: "Updated Club",
           city: "Brazil",
