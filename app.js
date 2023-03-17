@@ -3,10 +3,10 @@ const app = express();
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 
-const player = require("./routes/player.routes");
-const club = require("./routes/club.routes");
-const championship = require("./routes/championship.routes");
-const match = require("./routes/match.routes");
+const player = require("./server/routes/player.routes");
+const club = require("./server/routes/club.routes");
+const championship = require("./server/routes/championship.routes");
+const match = require("./server/routes/match.routes");
 dotenv.config();
 
 //import mongoose

@@ -55,26 +55,35 @@ exports.delete = async (req, res) => {
 exports.strikers = async (req, res) => {
   try {
     const championshipId = req.params.championshipId;
-    
+
     const strikers = await match.aggregate([
       // Filtra apenas os jogos do campeonato desejado
-      { $match: { "championshiṕ": mongoose.Types.ObjectId(championshipId) } },
-      
+      { $match: { championshiṕ: mongoose.Types.ObjectId(championshipId) } },
+
       // Agrupa os jogadores e soma os gols
-      { $group: { _id: "$team1.club.players", gols: { $sum: "$team1.gols" } } },
+      {
+        $group: { _id: "$team1.club.players", gols: { $sum: "$team1.goals" } },
+      },
       { $group: { _id: "$_id", gols: { $sum: "$gols" } } },
-      
+
       // Junta a informação do jogador
-      { $lookup: { from: "players", localField: "_id", foreignField: "_id", as: "player" } },
+      {
+        $lookup: {
+          from: "players",
+          localField: "_id",
+          foreignField: "_id",
+          as: "player",
+        },
+      },
       { $unwind: "$player" },
-      
+
       // Ordena pelo número de gols em ordem decrescente
       { $sort: { gols: -1 } },
-      
+
       // Seleciona apenas o nome do jogador e o número de gols
-      { $project: { nome: "$player.nome", gols: 1 } }
+      { $project: { nome: "$player.name", gols: 1 } },
     ]);
-    
+
     res.json(strikers);
   } catch (err) {
     res.status(500).send(err);
