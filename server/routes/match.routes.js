@@ -3,7 +3,8 @@ const router = express.Router();
 
 const match_controller = require("../controllers/match.controller.js");
 
-router.get("/", match_controller.list); //url to get all the matchs
+//TODO implement new route to match.list
+router.get("/", match_controller.home); //url to get all the matchs
 
 router.get("/:id", match_controller.searchById); //url to test the server
 

@@ -1,4 +1,10 @@
 const express = require("express");
+const expressLayouts = require("express-ejs-layouts");
+const fileUpload = require("express-fileupload");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+const flash = require("connect-flash");
+
 const app = express();
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
@@ -25,6 +31,20 @@ mongoose.connection
 
 //set EJS as templating engine
 
+app.use(express.static("public"));
+app.use(expressLayouts);
+app.use(cookieParser("CoookieSecure"));
+app.use(
+  session({
+    secret: "CookieSecretSession",
+    saveUninitialized: true,
+    resave: true,
+  })
+);
+app.use(flash());
+app.use(fileUpload());
+
+app.set("layout", "./layouts/main");
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 
@@ -36,8 +56,7 @@ app.use("/clubs", club);
 app.use("/championships", championship);
 app.use("/matches", match);
 
-app.get("/", (req, res) => {
-  res.status(200).send("Hello World!");
-});
+const routes = require("./server/routes/match.routes");
+app.use("/", routes);
 
 module.exports = app;

@@ -1,5 +1,14 @@
 const Match = require("../models/match.model.js");
 
+//Render the home page
+exports.home = (req, res) => {
+  try {
+    res.render("index", { title: "App sem nome - home" });
+  } catch (error) {
+    res.status(500).send({ message: error.message || "error ocurred" });
+  }
+};
+
 exports.list = async (req, res) => {
   try {
     const matches = await Match.find({});
