@@ -15,14 +15,14 @@ const championshipSchema = new mongoose.Schema({
       name: String,
       teams: [
         {
-          type: mongoose.Schema.Types.ObjectId,
+          type: mongoose.Schema.Types.Mixed,
           ref: "club",
         },
       ],
       standings: [
         {
           team: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.Mixed,
             ref: "club",
           },
           points: Number,
@@ -37,7 +37,7 @@ const championshipSchema = new mongoose.Schema({
   ],
   fixtures: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.Mixed,
       ref: "match",
     },
   ],

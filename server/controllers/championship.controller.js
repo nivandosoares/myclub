@@ -14,6 +14,10 @@ exports.list = async (req, res) => {
 exports.searchById = async (req, res) => {
   try {
     const championship = await Championship.findById(req.params.id);
+    if (!championship) {
+      res.status(404).send("No item found");
+      return;
+    } 
     res.json(championship);
   } catch (err) {
     res.status(500).send(err);
@@ -37,6 +41,10 @@ exports.update = async (req, res) => {
       req.body,
       { new: true }
     );
+    if (!championship) {
+      res.status(404).send("No item found");
+      return;
+    }
     res.json(championship);
   } catch (err) {
     res.status(500).send(err);
