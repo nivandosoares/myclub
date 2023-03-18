@@ -42,3 +42,5 @@ const championshipSchema = new mongoose.Schema({
     },
   ],
 });
+
+module.exports = mongoose.model("championship", championshipSchema);

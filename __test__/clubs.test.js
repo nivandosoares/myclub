@@ -1,11 +1,10 @@
 const request = require("supertest");
 const mongoose = require("mongoose");
 const app = require("../app");
-const Club = require("../models/club.model.js");
+const Club = require("../server/models/club.model");
 
 describe("Club API", () => {
-  let clubId;
-
+  
   afterEach(async () => {
     await Club.deleteMany({});
   });

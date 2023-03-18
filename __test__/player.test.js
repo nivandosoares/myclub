@@ -1,7 +1,7 @@
 const request = require("supertest");
 const mongoose = require("mongoose");
 const app = require("../app");
-const Player = require("../models/player.model");
+const Player = require("../server/models/player.model");
 
 describe("Player API", () => {
   afterEach(async () => {
