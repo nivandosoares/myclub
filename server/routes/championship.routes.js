@@ -3,7 +3,7 @@ const router = express.Router();
 
 const championship_controller = require("../controllers/championship.controller.js");
 
-router.get("/", championship_controller.list); //url to get all the championships
+router.get("/", championship_controller.home); //url to get all the championships
 
 router.get("/:id", championship_controller.searchById); //url to test the server
 

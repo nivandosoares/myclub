@@ -2,6 +2,14 @@ const Championship = require("../models/championship.model.js");
 const match = require("../models/match.model.js");
 const player = require("../models/player.model.js");
 
+exports.home = async (req, res) => {
+  try {
+    res.render("championships", { title: "Campeonatos" });
+  } catch (error) {
+    res.status(500).send({ message: error.message || "error ocurred" });
+  }
+};
+
 exports.list = async (req, res) => {
   try {
     const championships = await Championship.find({});
@@ -17,7 +25,7 @@ exports.searchById = async (req, res) => {
     if (!championship) {
       res.status(404).send("No item found");
       return;
-    } 
+    }
     res.json(championship);
   } catch (err) {
     res.status(500).send(err);

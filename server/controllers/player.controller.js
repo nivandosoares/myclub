@@ -1,5 +1,13 @@
 const Player = require("../models/player.model.js");
 
+exports.home = (req, res) => {
+  try {
+    res.render("players", { title: "Jogadores" });
+  } catch (error) {
+    res.status(500).send({ message: error.message || "error ocurred" });
+  }
+};
+
 // Obtém todos os jogadores
 exports.list = async (req, res) => {
   try {

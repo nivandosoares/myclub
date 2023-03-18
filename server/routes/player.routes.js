@@ -3,7 +3,7 @@ const router = express.Router();
 
 const player_controller = require("../controllers/player.controller.js");
 
-router.get("/", player_controller.list); //url to get all the players
+router.get("/", player_controller.home); //url to get all the players
 
 router.get("/:id", player_controller.searchById); //url to test the server
 
