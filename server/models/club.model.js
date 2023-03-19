@@ -16,7 +16,7 @@ const ClubSchema = new Schema({
     {
       championship: [
         {
-          type: mongoose.Schema.Types.Mixed,
+          type: mongoose.Schema.Types.ObjectId,
           ref: "championship",
         },
       ],
