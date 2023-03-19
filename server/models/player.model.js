@@ -6,17 +6,20 @@ const PlaySchema = new Schema({
   name: String,
   age: Number,
   position: String,
-  club: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "club",
-  },
+  image: String,
+  clubs: [
+    {
+      type: mongoose.Schema.Types.Mixed,
+      ref: "club",
+    },
+  ],
   history: [
     {
       championship: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.Mixed,
         ref: "championship",
       },
-      matchesPlayed: Number, 
+      matchesPlayed: Number,
       goals: Number,
       assists: Number,
     },
