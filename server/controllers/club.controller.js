@@ -1,5 +1,14 @@
 const Club = require("../models/club.model.js");
 
+exports.home = async (req, res) => {
+  try {
+    clubs = await Club.find({});
+    res.render("clubs", { title: "Clubes", clubs: clubs });
+  } catch (err) {
+    res.render("500", { title: "Erro interno do servidor" });
+  }
+};
+
 // Obtém todos os clubes
 exports.list = async (req, res) => {
   try {
