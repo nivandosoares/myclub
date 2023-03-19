@@ -1,34 +1,24 @@
 <div class="container">
   <h1>Jogadores</h1>
-  <div class="row">
-    <div class="col-md-4 mb-4">
-      <div class="card h-100">
-        <img
-          class="card-img-top"
-          src="https://via.placeholder.com/350x350.png?text=Foto+do+Jogador"
-          alt="Foto do Jogador"
-        />
-        <div class="card-body">
-          <h5 class="card-title">Nome do Jogador</h5>
-          <p class="card-text">Posição do Jogador</p>
+  <% if(players != '') {%> <% players.forEach(function(player, index){ %>
+  <a href="/players/<%- player.id %>">
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <img
+            class="card-img-top"
+            src="<%- player.image %>"
+            alt="Foto do Jogador"
+          />
+          <div class="card-body">
+            <h5 class="card-title"><%- player.name %></h5>
+            <p class="card-text"><%- player.position %></p>
+          </div>
         </div>
       </div>
     </div>
-    <!-- Repita este bloco de código para cada jogador -->
-    <div class="col-md-4 mb-4">
-      <div class="card h-100">
-        <img
-          class="card-img-top"
-          src="https://via.placeholder.com/350x350.png?text=Foto+do+Jogador"
-          alt="Foto do Jogador"
-        />
-        <div class="card-body">
-          <h5 class="card-title">Nome do Jogador</h5>
-          <p class="card-text">Posição do Jogador</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- ... -->
-  </div>
+  </a>
+  <% }) %> <% } else { %>
+  <div class="alert alert-warning" role="alert">Nenhum jogador encontrado!</div>
+  <% } %>
 </div>

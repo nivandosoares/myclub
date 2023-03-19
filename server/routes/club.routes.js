@@ -3,7 +3,7 @@ const router = express.Router();
 
 const club_controller = require("../controllers/club.controller.js");
 
-router.get("/", club_controller.list); //url to get all the clubs
+router.get("/", club_controller.home); //url to get all the clubs
 
 router.get("/:id", club_controller.searchById);
 
