@@ -6,6 +6,7 @@ const Schema = mongoose.Schema;
 const ClubSchema = new Schema({
   name: String,
   city: String,
+  image: String,
   players: [
     {
       type: mongoose.Schema.Types.ObjectId,

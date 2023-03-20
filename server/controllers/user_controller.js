@@ -4,16 +4,19 @@ exports.signup = async (req, res) => {
   res.render("signup");
 };
 
-exports.register = async (req, res) => {
-  const { username, password } = req.body;
-  const user = new User({ username, password });
+exports.registerOnPost = async (req, res) => {
+  const { name, password } = req.body;
+  const user = new User({ name, password });
   try {
     await user.save();
-    res.redirect("/login");
+    res.redirect("/user/login");
   } catch (error) {
     console.error(error);
     return res.status(500).send("Error");
   }
+};
+exports.dashboard = async (req, res) => {
+  res.render("dashboard", { title: "Dashboard", user: req.session.user });
 };
 
 exports.login = async (req, res) => {
@@ -26,10 +29,10 @@ exports.login = async (req, res) => {
 };
 
 exports.postLogin = async (req, res) => {
-  const { username, password } = req.body;
+  const { name, password } = req.body;
 
   try {
-    const user = await User.findOne({ username: username });
+    const user = await User.findOne({ name: name });
 
     if (!user) {
       return res.status(404).send("User not found");
@@ -42,7 +45,7 @@ exports.postLogin = async (req, res) => {
     }
 
     req.session.user = user;
-    res.redirect("/dashboard");
+    res.redirect("/user/dashboard");
   } catch (error) {
     console.error(error);
     return res.status(500).send("Error");
