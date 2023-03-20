@@ -82,7 +82,7 @@ exports.searchById = async (req, res) => {
     }
     res.render("club", { title: club.name, club: club });
   } catch (err) {
-    res.render("500", { title: "Erro interno do servidor" });
+    res.send("500");
   }
 };
 
