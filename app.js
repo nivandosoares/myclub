@@ -4,6 +4,7 @@ const fileUpload = require("express-fileupload");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const flash = require("connect-flash");
+const path = require("path");
 
 const app = express();
 const bodyParser = require("body-parser");
@@ -47,8 +48,8 @@ app.use(fileUpload());
 
 app.set("layout", "./layouts/main");
 app.set("view engine", "ejs");
-app.set("views", __dirname + "/views");
-app.use(express.static(__dirname + "/public"));
+app.set("views", path.resolve(__dirname + "/views"));
+app.use("/public/", express.static("./public"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

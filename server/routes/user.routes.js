@@ -3,7 +3,7 @@ const router = express.Router();
 
 const user_controller = require("../controllers/user_controller.js");
 
-router.get("/login", user_controller.login); //url to send login data
+router.get("/login", user_controller.login); //url to render login page
 
 router.get("/signup", user_controller.signup); //url to render register page
 

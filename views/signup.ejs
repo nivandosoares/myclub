@@ -6,17 +6,17 @@
           <h4>Cadastro</h4>
         </div>
         <div class="card-body">
-          <form>
+          <form
+            action="/user/register"
+            enctype="multipart/form-data"
+            method="post"
+          >
             <div class="mb-3">
-              <label for="nome" class="form-label">Nome</label>
+              <label for="username" class="form-label">Nome</label>
               <input type="text" class="form-control" id="nome" required />
             </div>
             <div class="mb-3">
-              <label for="email" class="form-label">E-mail</label>
-              <input type="email" class="form-control" id="email" required />
-            </div>
-            <div class="mb-3">
-              <label for="senha" class="form-label">Senha</label>
+              <label for="password" class="form-label">Senha</label>
               <input type="password" class="form-control" id="senha" required />
             </div>
             <button type="submit" class="btn btn-primary">Cadastrar</button>

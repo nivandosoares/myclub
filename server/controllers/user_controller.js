@@ -9,7 +9,7 @@ exports.register = async (req, res) => {
   const user = new User({ username, password });
   try {
     await user.save();
-    res.redirect("/login");
+    res.redirect("/user/login");
   } catch (error) {
     console.error(error);
     return res.status(500).send("Error");
@@ -42,7 +42,7 @@ exports.postLogin = async (req, res) => {
     }
 
     req.session.user = user;
-    res.redirect("/dashboard");
+    res.redirect("/user/dashboard");
   } catch (error) {
     console.error(error);
     return res.status(500).send("Error");

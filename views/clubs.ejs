@@ -10,9 +10,15 @@
     <tbody>
       <% if (clubs != ''){ %> <% clubs.forEach(function(club){ %>
       <tr>
-        <td><a href="/clubs/<% club.id %>"><%= club.name %></a></td>
-        <td><%= club.championship %></td>
-        <td><%= club.position %></td>
+        <td>
+          <a href="/clubs/<%= club.id %>"
+            ><img src="https://placehold.co/50x50" />
+            <p><%= club.name %></p></a
+          >
+        </td>
+
+        <td><% club.championship %></td>
+        <td><% club.position %></td>
       </tr>
       <% }); %>
     </tbody>
