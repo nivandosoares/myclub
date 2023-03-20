@@ -80,9 +80,9 @@ exports.searchById = async (req, res) => {
       res.status(404).send("Club not found");
       return;
     }
-    res.json(club);
+    res.render("club", { title: club.name, club: club });
   } catch (err) {
-    res.status(500).send(err);
+    res.render("500", { title: "Erro interno do servidor" });
   }
 };
 
