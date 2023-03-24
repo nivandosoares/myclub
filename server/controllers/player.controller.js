@@ -1,8 +1,9 @@
 const Player = require("../models/player.model.js");
 
-exports.home = (req, res) => {
+exports.home = async (req, res) => {
   try {
-    res.render("players", { title: "Jogadores" });
+    const players = await Player.find({});
+    res.render("players", { title: "Jogadores", players: players });
   } catch (error) {
     res.status(500).send({ message: error.message || "error ocurred" });
   }
@@ -23,10 +24,11 @@ exports.searchById = async (req, res) => {
   try {
     const player = await Player.findById(req.params.id);
     if (!player) {
-      res.status(404).send("Player not found");
+      res.status(404);
+      res.render("404", { title: "Jogador não encontrado" });
       return;
     }
-    res.json(player);
+    res.render("player", { title: "Jogador", player: player });
   } catch (err) {
     res.status(500).send(err);
   }

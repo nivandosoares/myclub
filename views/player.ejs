@@ -1,0 +1,59 @@
+<body>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card">
+          <img
+            src="https://via.placeholder.com/150"
+            alt="Foto do Jogador"
+            class="card-img-top"
+          />
+          <div class="card-body">
+            <h4 class="card-title"><%- player.name %></h4>
+            <p class="card-text">Idade: <%- player.age%></p>
+            <p class="card-text">Posição: <%- player.position %></p>
+            <p class="card-text">Clube Atual: <%- player.clubs[0].name %></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Histórico do Jogador</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Clube</th>
+                  <th>Temporada</th>
+                  <th>Campeonato</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Nome do Clube</td>
+                  <td>Temporada XX-XX</td>
+                  <td>Nome do Campeonato</td>
+                </tr>
+                <tr>
+                  <td>Nome do Clube</td>
+                  <td>Temporada XX-XX</td>
+                  <td>Nome do Campeonato</td>
+                </tr>
+                <tr>
+                  <td>Nome do Clube</td>
+                  <td>Temporada XX-XX</td>
+                  <td>Nome do Campeonato</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Links dos arquivos JS do Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>

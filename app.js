@@ -4,11 +4,13 @@ const fileUpload = require("express-fileupload");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const flash = require("connect-flash");
+const path = require("path");
 
 const app = express();
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 
+const user = require("./server/routes/user.routes");
 const player = require("./server/routes/player.routes");
 const club = require("./server/routes/club.routes");
 const championship = require("./server/routes/championship.routes");
@@ -46,8 +48,8 @@ app.use(fileUpload());
 
 app.set("layout", "./layouts/main");
 app.set("view engine", "ejs");
-app.set("views", __dirname + "/views");
-app.use(express.static(__dirname + "/public"));
+app.set("views", path.resolve(__dirname + "/views"));
+app.use("/public/", express.static("./public"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -56,6 +58,7 @@ app.use("/players", player);
 app.use("/clubs", club);
 app.use("/championships", championship);
 app.use("/matches", match);
+app.use("/user", user);
 
 const routes = require("./server/routes/match.routes");
 app.use("/", routes);

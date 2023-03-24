@@ -1,0 +1,29 @@
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Clube</th>
+        <th>Campeonato</th>
+        <th>Posição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (clubs != ''){ %> <% clubs.forEach(function(club){ %>
+      <tr>
+        <td>
+          <a href="/clubs/<%= club.id %>"
+            ><img src="https://placehold.co/50x50" />
+            <p><%= club.name %></p></a
+          >
+        </td>
+
+        <td><% club.championship %></td>
+        <td><% club.position %></td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+  <% } else { %>
+  <div class="alert alert-warning" role="alert">Nenhum clube encontrado!</div>
+  <% } %>
+</div>

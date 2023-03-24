@@ -6,6 +6,7 @@ const Schema = mongoose.Schema;
 const ClubSchema = new Schema({
   name: String,
   city: String,
+  image: String,
   players: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -16,7 +17,7 @@ const ClubSchema = new Schema({
     {
       championship: [
         {
-          type: mongoose.Schema.Types.Mixed,
+          type: mongoose.Schema.Types.ObjectId,
           ref: "championship",
         },
       ],

@@ -1,0 +1,48 @@
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Criar novo clube</h1>
+    <div class="col-lg-6 mx-auto"> 
+    </div>
+  </div>
+  
+  
+    <div class="col-8">
+      <form action="/clubs/create" enctype="multipart/form-data" method="POST">
+        <div class="row g-3">
+          <div class="col-12">
+            <label for="name" class="form-label">Nome do Clube</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              class="form-control"
+              required
+            />
+          </div>
+  
+          <div class="col-12">
+            <label for="city" class="form-label">Cidade</label>
+            <input
+              name="city"
+              id="city"
+              class="form-control"
+              type="text"
+            ></input>
+          </div>
+   
+          <div class="col-12">
+            <label for="image">Logo do Clube</label>
+            <input
+              type="file"
+              class="form-control"
+              name="image"
+              accept="image/*"
+            />
+          </div>
+  
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">Confirmar e enviar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
